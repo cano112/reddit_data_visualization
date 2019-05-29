@@ -9,14 +9,12 @@ d3.csv("data/submissions.csv").then(data => {
 
     let addToWordCountMap = word => {
         if(bannedTags.indexOf(word[1]) === -1) {
-            if(word[0] === '&#x') {
-                console.log(word[1]);
-            }
-            let currentCount = submissionWordsCount[word[0]];
+            let lowered = word[0] === 'I' || word[0] === 'I\'m' ? word[0] : word[0].toLowerCase();
+            let currentCount = submissionWordsCount[lowered];
             if(currentCount === undefined) {
                 currentCount = 0;
             }
-            submissionWordsCount[word[0]] = currentCount + 1;
+            submissionWordsCount[lowered] = currentCount + 1;
         }
     };
 
